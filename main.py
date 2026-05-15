@@ -1,49 +1,3 @@
-"""
-CENTRAL DE ESTUDOS - Python
-============================
-
-ATENÇÃO: Este arquivo foi reorganizado em uma estrutura mais clara!
-
-Suas anotações de estudo agora estão organizadas em:
-
-📖 /conceitos/        - Anotações teóricas de cada conceito
-📝 /exemplos/         - Exemplos práticos prontos para executar
-🏋️  /exercicios/     - Exercícios para praticar
-
-Para começar:
-1. Leia o arquivo README.md (guia completo)
-2. Leia o arquivo COMEÇAR_AQUI.md (instruções para iniciantes)
-3. Execute: python3 exemplos/main.py
-4. Estude os conceitos em ordem (01 → 04)
-
-Boa sorte! 🚀
-"""
-
-
-# CONTROLES DE FLUXO
-plano = "abc"
-
-if plano == "plus":
-  print("Plano plus")    
-elif plano == "pro":     
-  print("Plano pro") 
-elif plano == "max":
-  print("Plano max")
-else:
-  print("Voce nao tem um plano valido")
-
-
-campo_nome = ""
-campo_email = "ana@gmail.com"
-campo_senha = "123456"
-
-if campo_nome != "" and campo_email != "" and campo_senha != "":
-    print("Cadastro realizado com sucesso")
-else: 
-    print("Preencha todos os campos para realizar o cadastro")
-
-
-
 alunos = [
     {
         "nome_completo": "Luan Fagioni",
@@ -131,7 +85,7 @@ alunos = [
                 "situacao": "pendente"
             },
             "ciencias": {
-                "notas": [6.0, 7.0, 6.5],
+                "notas": [9.0, 9.5, 9.5],
                 "media": 0,
                 "situacao": "pendente"
             }
@@ -139,55 +93,38 @@ alunos = [
     },
 ]
 
+MEDIA_APROVACAO = 7.5
+MEDIA_REPROVACAO = 5.0
+
+def calcular_media(notas):
+    media = sum(notas) / len(notas)
+    return media
+
+def verificar_situacao(media):
+    if media >= MEDIA_APROVACAO:
+        return "aprovado"
+    elif media >= MEDIA_REPROVACAO and media < MEDIA_APROVACAO:
+        return "recuperacao"
+    elif media < MEDIA_REPROVACAO:
+        return "reprovado"
+    else:
+        return "pendente"
+
+def verificar_bolsa(situacao, media):
+    if situacao == "aprovado" and media > 9:
+        return "Parabens voce ganhou 10% de desconto na materia" 
+    else: 
+        return "-"
+
 for aluno in alunos:
     materias = aluno["materias"]
     
     for materia, dados in materias.items():
-        notas = dados["notas"]
-        somatorio = 0
-
-        for nota in notas:
-            somatorio += nota
-
-        media_calculada = somatorio / len(notas)
+        media_calculada = calcular_media( dados["notas"] )
         dados["media"] = media_calculada
 
+        situacao = verificar_situacao( dados["media"] )
+        dados["situacao"] = situacao
 
-MEDIA_APROVACAO = 7.5
-MEDIA_REPROVACAO = 5.0
-
-for aluno in alunos:
-    materias = aluno["materias"]
-
-    for materia, dados in materias.items():
-        media = dados["media"]
-
-        if media >= MEDIA_APROVACAO:
-            dados["situacao"] = "aprovado"
-        elif media >= MEDIA_REPROVACAO and media < MEDIA_APROVACAO:
-            dados["situacao"] = "recuperacao"
-        elif media < MEDIA_REPROVACAO:
-            dados["situacao"] = "reprovado"
-        else:
-            dados["situacao"] = "pendente"
-
-
-for aluno in alunos:
-    print("Nome:", aluno["nome_completo"])
-    print("Matrícula:", aluno["matricula"])
-    print("Série:", aluno["serie"])
-    print("Turno:", aluno["turno"])
-    print("Materias:", aluno["materias"])
-    print("================================")
-
-
-for aluno in alunos:
-    materias = aluno["materias"]
-
-    for materia, dados in materias.items():
-
-        if dados["situacao"] == "aprovado":
-            print("Parabens, voce foi aprovado em: ", materia)
-
-            if dados["media"] >= 9.0:
-                print("Parabens voce ganhou uma bolsa para o proximo ano na materia: " , materia)           
+        mensagem = verificar_bolsa( dados["situacao"], dados["media"] )
+        dados["observacao"] = mensagem

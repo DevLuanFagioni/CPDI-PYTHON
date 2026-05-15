@@ -98,13 +98,13 @@ alunos = [
 ]
 
 # NUNCA É EXECUTADA DE INICIO
-def imprimir():
-    print("OLÁ MUNDO!")
+def imprimir(texto):
+    print(texto)
 
 # PARA EXECUTAR A FUNÇÃO, É NECESSÁRIO CHAMÁ-LA PELO NOME
-imprimir()
-imprimir()
-imprimir()
+imprimir("Olá, mundo!")
+imprimir("Como vai você?")
+imprimir("Estou bem, obrigado!")
 
 
 def exibir_alunos():
@@ -118,6 +118,54 @@ def exibir_alunos():
 
 exibir_alunos()
 exibir_alunos()
+
+
+def somar(a, b):
+    soma = a + b
+    return soma    
+
+resultado = somar(10, 20)
+print(resultado)
+
+
+def calcular_media(lista_notas=[0,0,0]):
+    notas = lista_notas
+    media = sum(notas) / len(notas)
+    return media
+
+notas_aluno = [8.5, 7.0, 9.0]
+media_calculada = calcular_media( notas_aluno )
+
+MEDIA_APROVACAO = 7.5
+MEDIA_REPROVACAO = 5.0
+
+def verificar_situacao(media):
+    if media >= MEDIA_APROVACAO:
+        return "Aprovado"
+    elif media >= MEDIA_REPROVACAO and media < MEDIA_APROVACAO:
+        return "Pendente"
+    elif media < MEDIA_REPROVACAO:
+        return "Reprovado"
+    
+situacao_aluno = verificar_situacao(7)
+
+def exemplo(valor):
+    if valor > 10:
+        return "Valor maior que 10"  
+    elif valor == 10:
+        return "Valor igual a 10"
+    else:
+        return 10 / 2
+
+teste = exemplo(15)
+
+
+def verificar_bolsa(situacao, media):
+    if situacao == "aprovado" and media > 9:
+        return "Parabens voce ganhou 10% de desconto na materia"
+    else: 
+        return "-"
+
 
 # NO PYTHON TEMOS FUNÇÕES PRONTAS PARA USAR, COMO A FUNÇÃO TYPE() QUE RETORNA O TIPO DE DADO DE UMA VARIÁVEL
 
