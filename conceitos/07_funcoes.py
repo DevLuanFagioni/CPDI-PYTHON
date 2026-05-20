@@ -124,7 +124,7 @@ def somar(a, b):
     soma = a + b
     return soma    
 
-resultado = somar(10, 20)
+resultado = somar(b=10, a=20)
 print(resultado)
 
 
@@ -134,7 +134,7 @@ def calcular_media(lista_notas=[0,0,0]):
     return media
 
 notas_aluno = [8.5, 7.0, 9.0]
-media_calculada = calcular_media( notas_aluno )
+media_calculada = calcular_media( lista_notas=notas_aluno )
 
 MEDIA_APROVACAO = 7.5
 MEDIA_REPROVACAO = 5.0
@@ -170,14 +170,67 @@ def verificar_bolsa(situacao, media):
 # NO PYTHON TEMOS FUNÇÕES PRONTAS PARA USAR, COMO A FUNÇÃO TYPE() QUE RETORNA O TIPO DE DADO DE UMA VARIÁVEL
 
 # FUNCOES PRONTAS PARA USAR (GLOBAL)
-print()
-type()
+print("teste")
 
 # FUNÇÕES ESPECIFICAS (LOCAL)
-texto = "Olá"
-lista = [1, 2, 3]
-dicionario = {"chave": "valor"}
+# Manipulação de strings
 
-texto.upper() # TRANSFORMA O TEXTO EM MAIÚSCULO
-lista.append(4) # ADICIONA O ELEMENTO 4 NA LISTA
-dicionario.keys() # RETORNA AS CHAVES DO DICIONÁRIO
+# METODOS PARA MANIPULAR
+variavel = " luaN.faGioni"
+variavel = variavel.strip()
+variavel = variavel.replace(".", "-")
+variavel = variavel.lower()
+
+variavel2 = " luaN.faGioni"
+variavel2 = variavel2.strip().lower().replace(".", "-")
+
+
+# METODOS PARA VERIFICAR
+pos = variavel.find("fag")
+inicio = variavel.startswith("https")
+fim = variavel.endswith("@gmail.com")
+
+# METODOS PARA CONVERTER
+frutas = "banana, maca, laranja, kiwi"
+lista_frutas = frutas.split(", ")
+texto_frutas = " ".join(lista_frutas)
+
+# Formatação
+nome = "Luan"
+idade = 21
+com_format = "Seu nome é: {}, sua idade é: {}.".format(nome, idade)
+com_f = f"Seu nome é: {nome}, sua idade é: {idade}"
+
+# Manipulação de listas
+
+# Acesso, adicionar e remover
+lista = ["luan", "ana", "joao"]
+lista.append("thor")
+lista.remove("ana")
+lista.sort()
+lista.reverse()
+print(lista)
+
+# Metodos de iteração
+# map, filter
+numeros = [1, 6, 8, 9, 12]
+
+# percorre pela lista e executa uma funcao para item
+resultado =  list( map(lambda n: n + 1, numeros) )
+
+print(resultado)
+
+# percorre pela lista e filtra os items com base em uma condicao
+filtrados =  list( filter(lambda n: n > 9, numeros) ) 
+print(filtrados)
+
+
+# Modulos (NATIVOS)
+# JSON, DATA E TEMPO, MATH
+
+
+# Modulos (TERCEIROS = bibliotecas/frameworks)
+# DJANGO, FASTAPI, LANGCHAIN, MATILOP, PYTEST
+# AMBIENTES VIRTUAIS
+# GERENCIAMENTO DE MODULOS (PIP VENV)
+

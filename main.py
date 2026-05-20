@@ -95,10 +95,10 @@ alunos = [
 
 MEDIA_APROVACAO = 7.5
 MEDIA_REPROVACAO = 5.0
+DESCONTO_BOLSA = "10%"
 
 def calcular_media(notas):
-    media = sum(notas) / len(notas)
-    return media
+    return sum(notas) / len(notas)
 
 def verificar_situacao(media):
     if media >= MEDIA_APROVACAO:
@@ -110,15 +110,16 @@ def verificar_situacao(media):
     else:
         return "pendente"
 
+
 def verificar_bolsa(situacao, media):
     if situacao == "aprovado" and media > 9:
-        return "Parabens voce ganhou 10% de desconto na materia" 
+        return f"Parabens voce ganhou {DESCONTO_BOLSA} de desconto na materia" 
     else: 
         return "-"
 
 for aluno in alunos:
     materias = aluno["materias"]
-    
+
     for materia, dados in materias.items():
         media_calculada = calcular_media( dados["notas"] )
         dados["media"] = media_calculada
@@ -128,3 +129,4 @@ for aluno in alunos:
 
         mensagem = verificar_bolsa( dados["situacao"], dados["media"] )
         dados["observacao"] = mensagem
+
